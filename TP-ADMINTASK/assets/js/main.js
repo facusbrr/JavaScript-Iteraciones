@@ -21,22 +21,44 @@ function listarTarea() {
   }
 }
 
-function eliminarTarea(){
-  if (lista.length === 0){
-    alert("Está vacía");
-  return;
+function eliminarTarea() {
+  if (lista.length === 0) {
+    alert("Está vacía la lista");
+    return;
   }
-    listarTarea()
-    let tareaEliminar = prompt("Ingrese el nombre de la tarea a eliminar: ");
-    let indice = lista.indexOf(tareaEliminar);
+  listarTarea()
+  let tareaEliminar = prompt("Ingrese el nombre de la tarea a eliminar: ");
+  let indice = lista.indexOf(tareaEliminar);
 
-    if (indice !== -1){
-      lista.splice(indice, 1);
-      alert(`Tarea "${tareaEliminar}" eliminada correctamente`);
+  if (indice !== -1) {
+    lista.splice(indice, 1);
+    alert(`Tarea "${tareaEliminar}" eliminada correctamente`);
+  } else {
+    alert(`No se encuentra la tarea`);
+  }
+}
+
+function editarTarea() {
+  if (lista.length === 0) {
+    alert("Está vacía la lista");
+    return;
+  }
+
+  listarTarea();
+  let tareaEditar = prompt("Ingresar el nombre de la tarea a editar: ");
+  let indice = lista.indexOf(tareaEditar);
+
+  if (indice !== -1) {
+    let nuevaTarea = prompt("Ingresar la nueva tarea: ");
+
+    if (nuevaTarea.trim() !== "") {
+      lista[indice] = nuevaTarea;
+      alert(`Tarea "${tareaEditar}" editada correctamente`);
     } else {
-      alert(`No se encuentra la tarea`);
+      alert("La nueva tarea no puede ser vacía");
     }
   }
+}
 
 function menu() {
   let opcion = 1;
@@ -61,6 +83,9 @@ function menu() {
         break;
       case 3:
         eliminarTarea();
+        break;
+      case 4:
+        editarTarea();
         break;
       case 0:
         alert("Gracias por probar el código");
